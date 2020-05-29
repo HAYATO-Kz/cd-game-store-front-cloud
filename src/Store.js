@@ -29,6 +29,8 @@ const Store = () => {
   const [selectedGameModalVisible, setSelectedGameModalVisible] = useState(
     false
   );
+
+  const baseUrl = "localhost:8080";
   let total = 0;
 
   const selectGameModalHandle = (show) => {
@@ -76,7 +78,7 @@ const Store = () => {
       status: "purchase",
     };
 
-    fetch("http://localhost:8080/api/v0/carts/" + uid, {
+    fetch(`http://${baseUrl}/api/v0/carts/${uid}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +99,7 @@ const Store = () => {
   };
 
   const openCartHandle = () => {
-    fetch("http://localhost:8080/api/v0/carts/" + uid)
+    fetch(`http://${baseUrl}/api/v0/carts/${uid}`)
       .then((response) => response.json())
       .then((data) => {
         const s = data.products;
@@ -117,7 +119,7 @@ const Store = () => {
 
   const loadData = () => {
     if (gameType == "All") {
-      fetch("http://localhost:8080/api/v0/products")
+      fetch(`http://${baseUrl}/api/v0/products`)
         .then((response) => response.json())
         .then((data) => {
           setGameData(data.products);
@@ -125,7 +127,7 @@ const Store = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      fetch("http://localhost:8080/api/v0/products/type/" + gameType)
+      fetch(`http://${baseUrl}/api/v0/products/type/${gameType}`)
         .then((response) => response.json())
         .then((data) => {
           setGameData(data.products);
@@ -169,7 +171,7 @@ const Store = () => {
       set(userID);
     }
 
-    fetch("http://localhost:8080/api/v0/carts/" + u)
+    fetch(`http://${baseUrl}/api/v0/carts/${u}`)
       .then((response) => {
         if (response.status != 200) {
           throw new Error();
@@ -195,7 +197,7 @@ const Store = () => {
       status: "looking",
     };
 
-    fetch("http://localhost:8080/api/v0/carts/", {
+    fetch(`http://${baseUrl}/api/v0/carts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
