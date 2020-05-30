@@ -3,6 +3,7 @@ import {
   Nav,
   Navbar,
   Button,
+  Badge,
   ButtonGroup,
   Dropdown,
   Container,
@@ -38,16 +39,6 @@ const Store = () => {
     setSelectedGameNumber(1);
   };
 
-  const setSelectedGameQuantityHandle = (event) => {
-    let nQuantity = Number(event.target.value);
-    let newQuantity = selectedGame.stock - nQuantity;
-    if (newQuantity < 0) {
-      alert("Not enough stock");
-      return;
-    }
-    setSelectedGameNumber(nQuantity);
-  };
-
   const selectGameHandle = (pid) => {
     setSelectedGame(gameData.find((e) => e.pid === pid));
     selectGameModalHandle(true);
@@ -57,6 +48,11 @@ const Store = () => {
     let index = cartData.findIndex((e) => e == selectedGame.pid);
     if (index != -1) {
       alert("You already pick this product");
+      return;
+    }
+    let newQuantity = selectedGame.quantity - selectedGameQuantity;
+    if (newQuantity < 0) {
+      alert("Not enough stock");
       return;
     }
     // console.l
@@ -216,7 +212,7 @@ const Store = () => {
         <Nav className="mr-auto" />
         <ButtonGroup>
           <Button variant="primary" onClick={openCartHandle}>
-            CART
+            CART <Badge variant="light">{cartData.length}</Badge>
           </Button>
           <Button
             variant="danger"
@@ -301,7 +297,7 @@ const Store = () => {
                   <Col>
                     <Form.Control
                       as="select"
-                      onChange={(ch) => setSelectedGameQuantityHandle(ch)}
+                      onChange={(ch) => setSelectedGameNumber(ch.target.value)}
                       on
                     >
                       <Form.Label>Selected</Form.Label>
