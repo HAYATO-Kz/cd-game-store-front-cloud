@@ -11,13 +11,16 @@ const Home = () => {
       email: email,
       password: password,
     };
-    fetch("http://localhost:8080/api/v0/users/signin/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "http://ec2-35-175-237-84.compute-1.amazonaws.com:8060/api/v0/users/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => {
         if (response.status !== 201) {
           switch (response.status) {
@@ -50,13 +53,16 @@ const Home = () => {
       email: email,
       password: password,
     };
-    fetch("http://localhost:8080/api/v0/users/signup/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "http://ec2-35-175-237-84.compute-1.amazonaws.com:8060/api/v0/signup/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => {
         if (response.status !== 201) {
           switch (response.status) {

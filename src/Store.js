@@ -31,7 +31,7 @@ const Store = () => {
     false
   );
 
-  const baseUrl = "localhost:8080";
+  const baseUrl = "ec2-35-175-237-84.compute-1.amazonaws.com:8060";
   let total = 0;
 
   const selectGameModalHandle = (show) => {
