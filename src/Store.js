@@ -206,7 +206,7 @@ const Store = () => {
   };
 
   return (
-    <div className="App" style={{ backgroundColor: "#485156" }}>
+    <div className="App">
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">GAME STORE</Navbar.Brand>
         <Nav className="mr-auto" />
@@ -265,17 +265,33 @@ const Store = () => {
                   }}
                 >
                   <Card
-                    style={{ width: "18rem", textAlign: "center" }}
+                    style={{
+                      width: "18rem",
+                      textAlign: "center",
+                      backgroundColor: "#343B3F",
+                    }}
                     onClick={() => selectGameHandle(data.pid)}
                   >
-                    <Card.Img variant="top" src={data.image} />
+                    <Card.Img
+                      variant="top"
+                      src={data.image}
+                      style={{ height: "200px" }}
+                    />
                     <Card.Body>
-                      <Card.Title>{data.title}</Card.Title>
-                      <Card.Text>{data.desc}</Card.Text>
+                      <Card.Title style={{ color: "white" }}>
+                        {data.title}
+                      </Card.Title>
+                      <Card.Text style={{ color: "white" }}>
+                        {data.desc}
+                      </Card.Text>
                     </Card.Body>
                     <Card.Body>
-                      <Card.Text>Quantity: {data.quantity}</Card.Text>
-                      <Card.Text>Price: {data.price} Baht</Card.Text>
+                      <Card.Text style={{ color: "white" }}>
+                        Quantity: {data.quantity}
+                      </Card.Text>
+                      <Card.Text style={{ color: "white" }}>
+                        Price: {data.price} Baht
+                      </Card.Text>
                     </Card.Body>
                   </Card>
                 </Col>
